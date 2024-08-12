@@ -17,7 +17,7 @@ app.get("/specific-route", specificLimiter, (req: Request, res: Response) => {
     res.send('Specific route, Simple TypeScript Express Rate Limit!');
 });
 
-const port = process.env.PORT || 3210;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
