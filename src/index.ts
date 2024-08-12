@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import { limiter, specificLimiter } from './middlewares/ratelimit';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
