@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import limiter from './middlewares/ratelimit';
+import { limiter, specificLimiter } from './middlewares/ratelimit';
 
 const app = express();
 
@@ -13,7 +13,11 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, Simple TypeScript Express Rate Limit!');
 });
 
-const port = process.env.PORT || 3000;
+app.get("/specific-route", specificLimiter, (req: Request, res: Response) => {
+    res.send('Specific route, Simple TypeScript Express Rate Limit!');
+});
+
+const port = process.env.PORT || 3210;
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
