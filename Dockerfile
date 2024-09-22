@@ -1,13 +1,10 @@
-FROM node:18
-
-WORKDIR /app
-
+FROM node:lts-alpine
+ENV NODE_ENV=prduction
+WORKDIR /usr/src/app
 COPY package*.json ./
-
-RUN npm install
-
+RUN npm install --production --silent && mv node_modules ../
 COPY . .
-
-EXPOSE 5000
-
+EXPOSE 3000
+RUN chown -R node /usr/src/app
+USER node
 CMD ["npm","start"]
