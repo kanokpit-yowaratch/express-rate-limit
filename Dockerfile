@@ -1,10 +1,15 @@
-FROM node:lts-alpine
-ENV NODE_ENV=prduction
+FROM node:boron
+
+# Create app directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY . .
+
+# Install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app
+
 EXPOSE 3000
-RUN chown -R node /usr/src/app
-USER node
-CMD ["node","dist/index.js"]
+CMD [ "npm", "start" ]
