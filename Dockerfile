@@ -13,8 +13,6 @@ COPY . /usr/src/app
 
 RUN npm run build
 
-#COPY . .
-
 EXPOSE 3000
 RUN chown -R node /usr/src/app
 CMD [ "npm", "start" ]
