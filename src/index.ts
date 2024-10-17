@@ -1,6 +1,5 @@
-import express, { Express, Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import cors from 'cors';
-import mysql from 'mysql2/promise';
 import { limiter, specificLimiter } from './middlewares/ratelimit';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -10,7 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Apply the rate limiting middleware to all requests.
 app.use(limiter);
 
 app.get('/', (req: Request, res: Response) => {
